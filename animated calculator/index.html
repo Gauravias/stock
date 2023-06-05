@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>G-STOCK Calculator</title>
+  <link rel="stylesheet" href="./style.css">
+<!-- Start of Async Drift Code -->
+<script>
+	"use strict";
+	
+	!function() {
+	  var t = window.driftt = window.drift = window.driftt || [];
+	  if (!t.init) {
+		if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+		t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+		t.factory = function(e) {
+		  return function() {
+			var n = Array.prototype.slice.call(arguments);
+			return n.unshift(e), t.push(n), t;
+		  };
+		}, t.methods.forEach(function(e) {
+		  t[e] = t.factory(e);
+		}), t.load = function(t) {
+		  var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+		  o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+		  var i = document.getElementsByTagName("script")[0];
+		  i.parentNode.insertBefore(o, i);
+		};
+	  }
+	}();
+	drift.SNIPPET_VERSION = '0.3.1';
+	drift.load('c3aurgtk94ca');
+	</script>
+	<!-- End of Async Drift Code -->
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<div class="container">
+  <form class="calculator" name="calc">
+    <!--     <input type="text" readonly class="value" name="txt"> -->
+    <textarea name="txt" readonly class="value" rows="3"></textarea>
+    <span class="num clear" onclick="calc.txt.value = ''">c</span>
+    <span class="num" onclick="document.calc.txt.value +='/'">/</span>
+    <span class="num" onclick="document.calc.txt.value +='*'">*</span>
+    <span class="num" onclick="document.calc.txt.value +='7'">7</span>
+    <span class="num" onclick="document.calc.txt.value +='8'">8</span>
+    <span class="num" onclick="document.calc.txt.value +='9'">9</span>
+    <span class="num" onclick="document.calc.txt.value +='-'">-</span>
+    <span class="num" onclick="document.calc.txt.value +='4'">4</span>
+    <span class="num" onclick="document.calc.txt.value +='5'">5</span>
+    <span class="num" onclick="document.calc.txt.value +='6'">6</span>
+    <span class="num plus" onclick="document.calc.txt.value +='+'">+</span>
+    <span class="num" onclick="document.calc.txt.value +='1'">1</span>
+    <span class="num" onclick="document.calc.txt.value +='2'">2</span>
+    <span class="num" onclick="document.calc.txt.value +='3'">3</span>
+    <span class="num" onclick="document.calc.txt.value +='0'">0</span>
+    <span class="num" onclick="document.calc.txt.value +='00'">00</span>
+    <span class="num" onclick="document.calc.txt.value +='.'">.</span>
+    <span class="num equal" onclick="document.calc.txt.value =eval(calc.txt.value)">=</span>
+  </form>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js'></script><script  src="./script.js"></script>
+ <br> <center> <div class="#"><button onclick="window.history.back()" class=".btn-primary">BACK<img src="back.gif"></button></div></center> 
+</body>
+</html>

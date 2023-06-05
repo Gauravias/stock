@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>COMMING SOON</title>
+	<link rel="stylesheet" href="style.css">
+	<!-- Start of Async Drift Code -->
+<script>
+	"use strict";
+	
+	!function() {
+	  var t = window.driftt = window.drift = window.driftt || [];
+	  if (!t.init) {
+		if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+		t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+		t.factory = function(e) {
+		  return function() {
+			var n = Array.prototype.slice.call(arguments);
+			return n.unshift(e), t.push(n), t;
+		  };
+		}, t.methods.forEach(function(e) {
+		  t[e] = t.factory(e);
+		}), t.load = function(t) {
+		  var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+		  o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+		  var i = document.getElementsByTagName("script")[0];
+		  i.parentNode.insertBefore(o, i);
+		};
+	  }
+	}();
+	drift.SNIPPET_VERSION = '0.3.1';
+	drift.load('c3aurgtk94ca');
+	</script>
+	<!-- End of Async Drift Code -->
+</head>
+<body>
+	<div id="clock">
+		<h1 style="text-align: center; color: rgb(47, 201, 240);">COMMING SOON.....</h1>
+		<h2>Sorry for the inconvenience.
+			We are currently working on <span style="color: rgb(243, 70, 70);">something awesome and can't wait to share you!</span> 
+			Please check back soon.</h2><br/><br/><br/>
+			<center>
+		<div id="time">
+			<div><span id="hour">00</span><span>Hours</span></div>
+			<div><span id="minutes">00</span><span>Minutes</span></div>
+			<div><span id="seconds">00</span><span>Seconds</span></div>
+			<div><span id="ampm"></span></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function clock(){
+
+			var hours = document.getElementById('hour');
+			var minutes = document.getElementById('minutes');
+			var seconds = document.getElementById('seconds');
+			var ampm = document.getElementById('ampm');
+
+			var h = new Date().getHours();
+			var m = new Date().getMinutes();
+			var s = new Date().getSeconds();
+			var am = "AM";
+
+		    if(h > 12){
+		        h = h - 12;
+		       var am = "PM"
+		    }
+			h = (h < 10) ? "0" + h : h
+			m = (m < 10) ? "0" + m : m
+			s = (s < 10) ? "0" + s : s
+
+
+			hours.innerHTML = h;
+			minutes.innerHTML = m;
+			seconds.innerHTML = s;
+			ampm.innerHTML = am
+
+		}
+
+		var interval = setInterval(clock, 1000);
+	</script>
+	 </center>
+</body>
+</html>
+
+

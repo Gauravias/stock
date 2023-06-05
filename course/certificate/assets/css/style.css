@@ -1,0 +1,138 @@
+
+/* main * {
+    margin-bottom: 15px;
+} */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+.body{
+    background-color: #3d5d9c;
+}
+.dept{
+    margin-top: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: none;
+}
+#PUlogo{
+    margin-top: 4vh;
+    height: 8vw;
+    width: 8vw;
+    margin-bottom: 55px;
+}
+#PUlogo:hover {
+    margin-top: 5vh;
+    height: 8.6vw;
+    width: 8.6vw;
+    margin-bottom: 55px;
+}
+
+h3{
+    padding: 2vh;
+    font-size: 1.8rem;
+    padding: 0;
+}
+
+#chemdept{
+    font-size: 2.45rem;
+}
+#chemdept:hover{
+    text-decoration: none;
+    font-size: 2.55rem;
+}
+
+#name {
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    box-shadow: none;
+    width: 28vw;
+}
+#inputImage {
+    font-size: 1.1rem;
+    text-align: center;
+}
+#profile{
+    box-shadow: none;
+    width: 19vw;
+}
+#submit {
+    background: #142245;
+    color: white;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: none;
+    width: 8vw;
+}
+#userImage{
+    width: 17vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#container_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+}
+#container_button .btn{
+    width: 5vw;
+    font-size: 0.9rem;
+}
+#container{
+    text-align: center;
+    margin-top:0.4em;
+    margin-bottom: 2em;
+    padding-bottom: 5vw;
+}
+#canvas{
+    position: relative;
+    width: 80%;
+    height: auto;
+    display: none;
+    margin-left:10vw;
+    margin-right: auto;
+}
+#forsp{
+    visibility: hidden;
+}
+button{
+    margin-right:1em;
+}
+#preview{
+    display: none;
+}
+#dpdf{
+    display:none;
+}
+#djpg{
+    display:none;
+}
+#img1{
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #1c1d1f;
+    color: rgb(113, 175, 55);
+    padding: 10px;
+}
+.center{
+    text-align: center;
+}

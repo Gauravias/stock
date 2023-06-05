@@ -1,0 +1,47 @@
+#PUlogo{
+    margin-bottom: 0;
+}
+.dept{
+    margin-top: 28px;
+}
+section h3 {
+    margin-top: 25px;
+    margin-bottom: 0;
+    padding: 8px;
+    font-size: 1.1rem;
+    padding: 0;
+}
+#chemdept{
+    font-size: 1.7rem;
+}
+#chemdept:hover{
+    text-decoration: none;
+    font-size: 1.8rem;
+}
+#name {
+    font-size: 0.75rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    text-align: center;
+    box-shadow: none;
+    width: 80vw;
+}
+#inputImage {
+    font-size: 0.7rem;
+}
+#profile{
+    box-shadow: none;
+    width: 56.8vw;
+}
+#submit {
+    font-size: 0.55rem;
+    width: 18vw;
+}
+#container{
+    padding-bottom: 7.5vw;
+}
+#container_button .btn{
+    width: 11vw;
+    font-size: 0.55rem;
+}
