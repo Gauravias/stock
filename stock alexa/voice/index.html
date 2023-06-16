@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      
+
+      <title>G-stock Alexa</title>
+
+      
+
+      <script src="https://sdkcarlos.github.io/demos/artyom.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      
+      <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="https://eliteenindia.in/wp-content/themes/oceanwp/assets/js/jquery.jplayer.js"></script> -->
+  <style type="text/css">
+    .button {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #bcbfc4;
+  background: #2d58e6;
+background: linear-gradient(90deg, rgb(237, 243, 242) 0%, rgb(224, 236, 235) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+button::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #3b86f7;
+  box-shadow: 0 0 60px rgba(89, 78, 235, 0.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color: #5454fc;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+button::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #4566f8;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+    
+    body{
+       background-image: url(o.jpg);
+       background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   background-size: 100% 100%;
+  
+ 
+  position: relative;
+  width: 98vw;
+  -webkit-animation: Rainbow 25s ease infinite;
+  -moz-animation: Rainbow 25s ease infinite;
+  animation: Rainbow 25s ease infinite;
+}
+    }
+    @-webkit-keyframes Rainbow {
+  0% {
+    background-position: 94% 0%; }
+  50% {
+    background-position: 7% 100%; }
+  100% {
+    background-position: 94% 0%; } }
+  </style>
+  </head>
+
+
+  <body><center>
+    <div class="#"></div><br><br>
+    <button class="button"
+  
+  
+  >G-stock Alexa</button></center>
+    <div class="container" style=" width:60%;background-image: url(alexa.jpg); margin-top: 60px; padding-top:20px; 
+-webkit-box-shadow: 7px 10px 206px -8px rgba(63, 207, 226, 0.75);
+-moz-box-shadow: 7px 10px 206px -8px rgba(0,0,0,0.75);
+                                  box-shadow: 7px 10px 206px -8px rgba(0,0,0,0.75); ">
+      <center>  
+      <input type="button" style="
+              
+      padding: 15px 25px;
+      font-size: 25px;
+      text-align: center;
+      cursor: pointer;
+      color: #a8effc;
+      background-color:#3b444b;
+  
+      border-radius: 10px;
+      box-shadow: 0 5px #e9fdfc;" onclick="startArtyom()" value="Start voice commands "><br><br>
+      <input type="button" style="
+              
+      padding: 15px 25px;
+      font-size: 25px;
+      text-align: center;
+      cursor: pointer;
+      color: #e06b34;
+      background-color:silver;
+  
+      border-radius: 10px;
+      box-shadow: 0 5px #ebfaf9;"  onclick="stopArtyom()" value="Stop Listening"/><br>
+      <span id="output" style="font-size:20px;color:red;"></span><br>
+      <span id="time" style="font-size:35px;color:green;"></span><br>
+      <div id="jquery_jplayer_1"></div>
+
+      <span style="color:blue;">Here You can Say: </span><br>
+      <div id="commands-list" class="display-1" style="font-size:  1.1em;">
+
+      </div>
+      <!-- <textarea id="text-content"></textarea> -->
+      <!-- <input id="talk-lang" type="button" value="Synthesize "/> -->
+      <!-- <select id="select-voice">
+
+      </select> -->
+      <di id="load-voices"  type="hidden" value="Load voices"/>
+      <div id="voices-item" ></div>
+      Made Gaurav Tripathi
+    </center>
+    </div>
+    <script>
+      function readOutLoud(message) {
+          var speech = new SpeechSynthesisUtterance();
+
+          // Set the text and voice attributes.
+          speech.text = message;
+          speech.volume = 1;
+          speech.rate = 1;
+          speech.pitch = 1;
+
+          window.speechSynthesis.speak(speech);
+        }
+    $("#talk-lang").click(function(){
+        artyom.say($("#text-content").val());
+    });
+
+    $("#select-voice").change(function(){
+        var lang = $(this).val();
+
+        artyom.initialize({lang:lang});
+    });
+
+    document.getElementById("load-voices").addEventListener("click", function(){
+        var voices = artyom.getVoices();
+        var html = "";
+
+        voices.forEach(function(voice){
+            html += "Voz name : " + voice.name + " con lang : " + voice.lang + "<br>";
+        });
+
+        document.getElementById("voices-item").innerHTML = html;
+    }, false);
+      // Now we add the most important point of the plugin, the commands
+      // This library is very flexible and now we will see why :
+      // Every command is a literal object
+      artyom.addCommands([
+        {
+          description:"Artyom can talk too, lets say something if we say hello",
+          indexes:["hello","hey"],
+          action:function(i){
+              // i = the index of the array of indexes option
+
+              if(i == 0){
+                //You say : "hello"
+                document.getElementById('time').innerHTML = "Hello ! How are you? ";
+                readOutLoud("Hello, How are you?");
+              }
+          }
+        },
+        {
+          description:"Who Are You",
+          indexes:["Who Are You"],
+          action:function(){
+            readOutLoud("I am Your Voice Assistant , I am Here To Make You Work More Easy.  ");
+          }
+        },
+        {
+          description:"I Am Angry",
+          indexes:["I Am Angry"],
+          action:function(){
+            readOutLoud("Ohh Don't Angery Be Happy It's Human Nature But You Need To calm dowm  ");
+          }
+        },
+        {
+          description:"Say I Love You",
+          indexes:["I Love You"],
+          action:function(){
+            readOutLoud("I am Voice Assistant I Have No Feeling  ");
+          }
+        },
+        {
+          description:"Har Har Mahadev",
+          indexes:["Har Har Mahadev"],
+          action:function(){
+            readOutLoud("Har Har Mahadev, Jay Mahaakaal, Om , Jay Sanatan  ");
+          }
+        },
+        {
+          description:"Say I Love You",
+          indexes:["I am Indian"],
+          action:function(){
+            readOutLoud("Better than entire world, is our Hindustan,   ");
+          }
+        },
+        {
+          description:"Say I am girl",
+          indexes:["I am Girl"],
+          action:function(){
+            readOutLoud("ohh, but I am artificial assistent. I have some advise for you but it not free " );
+          }
+        },
+        {
+          description:"Say I am boy",
+          indexes:["I am boy"],
+          action:function(){
+            readOutLoud("ohh, but I am artificial assistent . please study more than more ");
+          }
+        },
+        {
+          description:"Say I am men",
+          indexes:["I am man"],
+          action:function(){
+            readOutLoud("ohh, but I am artificial assistent . ");
+          }
+        },
+        {
+          description:"Say I am women",
+          indexes:["I am woman"],
+          action:function(){
+            readOutLoud("ohh, but I am artificial assistent . ");
+          }
+        },
+        {
+          description:"Say what day today",
+          indexes:['day'],
+          action:function(){
+            //alert();
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"];
+              var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+           var d = new Date();
+           //var datetime ="today is "+d.getDate() +" "+ monthNames[d.getMonth()] + " of "+ d.getFullYear()+ days[d.getDay()];
+
+           var datetime = "Today is " + days[d.getDay()] + " " + monthNames[d.getMonth()] + " "+ d.getDate();
+
+            document.getElementById('time').innerHTML = datetime;
+                readOutLoud(datetime);
+
+
+          }
+        },
+        
+         {
+          description: "For time",
+          indexes:["what's the time"],
+          //smart:true,
+          action:function(){
+            var time = new Date();
+           var timee = " It's " + time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true});
+            document.getElementById('time').innerHTML = timee;
+              readOutLoud(timee);
+          }
+        }, {
+          description: "play song ",
+          indexes:["play song"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.youtube.com/watch?v=BddP6PYo2gs&start_radio=1&list=BddP6PYo2gs','_blank');
+            readOutLoud("Playing Song On Youtube");
+             document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        }, {
+          description: "what is stock market ",
+          indexes:["what is stock market"],
+          //smart:true,
+          action:function(){
+            window.open('https://bc-search.com/search?devise=64653c33bc51c8166e269a71&q=what+is+stock+market+india','_blank');
+            readOutLoud("india, stock market");
+             document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "what is stock market ",
+          indexes:["stock market"],
+          //smart:true,
+          action:function(){
+            window.open('https://bc-search.com/search?devise=64653c33bc51c8166e269a71&q=what+is+stock+market+india','_blank');
+            readOutLoud("india, stock market");
+             document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "how to invest in stocks ",
+          indexes:["how to invest in stocks"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.search-hq.com/web?q=how%20to%20invest%20in%20stocks%20in%20india&%7Bignore%7Dkwid=%7Bkeyword%3Adefault%7D&cid=%7Bcreative%7D&site=%7Bplacement%7D&gclid=CjwKCAjw4ZWkBhA4EiwAVJXwqeBrRRXi9Tha2dUvlsXFLW_S9QwTjztpEVwXvqbfDJ_xsavQt00VNBoCCeYQAvD_BwE&ueid=512a00f8-32a9-43d7-a5bf-84ba92665b82&qsrc=999&qo=semQuery&ad=semD&l=sem&askid=de35da08-e81d-4d9b-b310-91bf5fae328a-0-hq_gsb&dqi=&ag=fw81&am=broad&an=google_s&o=1463667');
+            readOutLoud(" how to invest in stocks india, stock market");
+             document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "I am sad",
+          indexes:["I am sad"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.youtube.com/watch?v=i5BOo9b9vYs&start_radio=1&list=i5BOo9b9vYs','_blank');
+            readOutLoud("Don't sad Sab Moh Maya hai listen Bhagawat Gita");
+             document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        
+        {
+          description: "Open google ",
+          indexes:["open google"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.google.co.in','_blank');
+            readOutLoud("opening google");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Google"
+          }
+        },
+        {
+          description: "Open google ",
+          indexes:["google"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.google.co.in','_blank');
+            readOutLoud("opening google");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Google"
+          }
+        },
+        {
+          description: "Open google ",
+          indexes:["Search engine"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.google.co.in','_blank');
+            readOutLoud("opening google");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Google"
+          }
+        },
+         {
+          description: "Open Youtube ",
+          indexes:["open Youtube"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.youtube.com/?app=desktop','_blank');
+            readOutLoud("oppning Youtube");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open Flipkart ",
+          indexes:["open Flipkart"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.flipkart.com/?app=desktop','_blank');
+            readOutLoud("oppning Flipkart");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open Flipkart ",
+          indexes:["Flipkart"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.flipkart.com/?app=desktop','_blank');
+            readOutLoud("oppning Flipkart");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open amazon ",
+          indexes:["amazon"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.amazon.com/?app=desktop','_blank');
+            readOutLoud("oppning amazon");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open amazon ",
+          indexes:[" open amazon"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.amazon.com/?app=desktop','_blank');
+            readOutLoud("oppning amazon");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open amazon prime ",
+          indexes:["amazon prime"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.primevideo.com/?app=desktop','_blank');
+            readOutLoud("oppning amazon prime video");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open amazon prime ",
+          indexes:["open prime video"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.primevideo.com/?app=desktop','_blank');
+            readOutLoud("oppning amazon prime video");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open amazon prime ",
+          indexes:["prime video"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.primevideo.com/?app=desktop','_blank');
+            readOutLoud("oppning amazon prime video");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open netflix ",
+          indexes:["open netflix"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.netflix.com/?app=desktop','_blank');
+            readOutLoud("oppning netflix");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+        {
+          description: "Open netflix ",
+          indexes:["netflix"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.netflix.com/?app=desktop','_blank');
+            readOutLoud("oppning netflix");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Youtube"
+          }
+        },
+         {
+          description: "Open Gmail ",
+          indexes:["open Gmail"],
+          //smart:true,
+          action:function(){
+            window.open('https://mail.google.com/mail/u/0/#','_blank');
+            readOutLoud("oppning Gmail");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Open Gmail ",
+          indexes:["Gmail"],
+          //smart:true,
+          action:function(){
+            window.open('https://mail.google.com/mail/u/0/#','_blank');
+            readOutLoud("oppning Gmail");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Open whatsapp ",
+          indexes:["open whatsapp"],
+          //smart:true,
+          action:function(){
+            window.open('https://web.whatsapp.com/?app=desktop','_blank');
+            readOutLoud("oppning whatsapp");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Open whatsapp ",
+          indexes:["whatsapp"],
+          //smart:true,
+          action:function(){
+            window.open('https://web.whatsapp.com/?app=desktop','_blank');
+            readOutLoud("oppning whatsapp");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Udayakaranpur ",
+          indexes:["Tripathi Family"],
+          //smart:true,
+          action:function(){
+            window.open('https://gaurav320.github.io/udayakaranpur.github.io/#','_blank');
+            readOutLoud("opening Tripathi Family Udayakaranpur");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Sarkari Result ",
+          indexes:["Sarkari result"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.sarkariresult.com/#','_blank');
+            readOutLoud("opening  Sarkari Result");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Sarkari Result ",
+          indexes:["open Sarkari result"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.sarkariresult.com/#','_blank');
+            readOutLoud("opening  Sarkari Result");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "chat gpt ",
+          indexes:["open chat gpt"],
+          //smart:true,
+          action:function(){
+            window.open('https://chat.openai.com/','_blank');
+            readOutLoud("opening  chat gpt open ai");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Gaurav Tripathi ",
+          indexes:["Gaurav Tripathi"],
+          //smart:true,
+          action:function(){
+            window.open('https://gaurav320.github.io/udayakaranpur.github.io/gaurav/index.html','_blank');
+            readOutLoud("opening Gaurav Tripathi Blog");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Open omegle ",
+          indexes:["open omegle"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.omegle.com/?app=desktop','_blank');
+            readOutLoud(" opnning omegle");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Open omegle ",
+          indexes:["omegle"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.omegle.com/?app=desktop','_blank');
+            readOutLoud(" opening omegle");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Open omegle ",
+          indexes:["University"],
+          //smart:true,
+          action:function(){
+            window.open('http://www.vbspu.ac.in/#','_blank');
+            readOutLoud(" opening Purvachal University");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Youtube ",
+          indexes:["Youtube"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.youtube.com/?app=desktop','_blank');
+            readOutLoud(" opening Youtube");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Jay Shri Ram ",
+          indexes:["Jay Shri Ram"],
+          //smart:true,
+          action:function(){
+            window.open('https://en.wikipedia.org/wiki/Jai_Shri_Ram/#','_blank');
+            readOutLoud(" Jay Shri Ram Kattar Hindu");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+       
+        {
+          description: "Open facebook ",
+          indexes:["open facebook"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.facebook.com/#','_blank');
+            readOutLoud("oppning facebook");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        
+        {
+          description: "Open Instagram ",
+          indexes:["open Instagram"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.instagram.com/#','_blank');
+            readOutLoud("oppning instagram");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+        {
+          description: "Open Twitter ",
+          indexes:["open Twitter"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.twitter.com/#','_blank');
+            readOutLoud("oppning twitter");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+       
+        {
+          description: "Play Music ",
+          indexes:["Play Music"],
+          //smart:true,
+          action:function(){
+            window.open('https://wynk.in/music/song/sarkar/bl_A10320WT043220257W?q=sar/#','_blank');
+            readOutLoud("oppning Music");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Gmail"
+          }
+        },
+         {
+          description: "party song",
+          indexes:["Play Party song"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.youtube.com/watch?v=ZSNnoMDOgFc&start_radio=1&list=ZSNnoMDOgFc','_blank');
+            readOutLoud("party song for party");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Weather"
+          }
+        },
+        {
+          description: "Weather",
+          indexes:["What's the weather like"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.google.co.in/search?q=weather','_blank');
+            readOutLoud("Here is the Weather Report");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Weather"
+          }
+        },
+         {
+          description: "cricket",
+          indexes:["What's the cricket score"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.google.co.in/search?rlz=1C1CHBD_enIN782IN782&ei=75ycW7P6AcnTvgTY4pygBQ&q=cricket+score&oq=crick&gs_l=psy-ab.4.1.0i67k1l3j0l2j0i67k1j0i131i67k1j0l2j0i10k1.114120.115346.0.116969.5.5.0.0.0.0.295.847.2-3.3.0....0...1c.1.64.psy-ab..2.3.833...35i39k1j0i131k1.0.wSPuPv6uSx8','_blank');
+            readOutLoud("Here is the cricket Score");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Cricket Score"
+          }
+        },
+         {
+          description: "news",
+          indexes:["Tell me the Latest news"],
+          //smart:true,
+          action:function(){
+            window.open('https://www.google.co.in/search?q=news&rlz=1C1CHBD_enIN782IN782&source=lnms&tbm=nws&sa=X&ved=0ahUKEwjIjcfYqLzdAhUUaI8KHcVRBLgQ_AUIDygC&biw=1366&bih=636','_blank');
+            readOutLoud("Here is the latest News");
+            document.getElementById('time').innerHTML = "Please Allow The Pop-ups To Open Latest New"
+          }
+        }
+      ]);
+
+
+      // Redirect the recognized text
+      artyom.redirectRecognizedTextOutput(function(text,isFinal){
+        var span = document.getElementById('output');
+
+        if(isFinal){
+          span.innerHTML = '';
+        }else {
+          span.innerHTML = text;
+        }
+      });
+
+      function startArtyom(){
+        artyom.initialize({
+          lang:"en-GB",// More languages are documented in the library
+          continuous:false,//if you have https connection, you can activate continuous mode
+          debug:true,//Show everything in the console
+          listen:true // Start listening when this function is triggered
+        });
+      }
+
+      function stopArtyom(){
+        artyom.fatality();
+      }
+
+      window.onload = function(){
+          var tab = document.getElementById("commands-list");
+          var commands =  artyom.getAvailableCommands();
+          var html = '';
+
+          for(var i = 0;i < commands.length;i++){
+              var command = commands[i];
+              html += command.description + " : <span style='color:blue;'>"+command.indexes.toString()+"</span><br>";
+          }
+
+          tab.innerHTML = html;
+
+          artyom.initialize({lang:"es-ES"});
+
+        var vocesitas = [
+            {lang:"es-ES",description: "Espanol"},
+            {lang:"de-DE",description: "Deutsch"},
+            {lang:"pt-PT",description: "Portugues"},
+            {lang:"it-IT",description: "Italiano"}
+        ];
+
+        vocesitas.forEach(function(voice){
+            $('#select-voice').append($('<option>', {value:voice.lang, text:voice.description}));
+        });
+      };
+    </script>
+  </body>
+
+</html>

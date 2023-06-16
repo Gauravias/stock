@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form g-stock</title>
+    <link rel="stylesheet" href="syle.css">
+</head>
+<body>
+    <form action="https://sheetdb.io/api/v1/m4br07h3b04ap" method="post" id="sheetdb-form">
+        <div class="container">
+         <center> <h1>Registration Form</h1></center>
+         <center><p>Please fill in this form to registration to G-Stock Course</p></center> 
+          <hr>
+
+          <label for="email"><b>Name</b></label>
+          <input type="text" placeholder="Enter Name" name="data[name]" required>
+      
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="data[email]" required>
+      
+          <label for="psw"><b>Why you Join G-stock Course</b></label>
+          <input type="text" placeholder="Why you Join G-stock" name="data[psw]" required>
+      
+          <label for="psw repeat"><b>Address</b></label>
+          <input type="text" placeholder="Address" name="data[pswr]" required>
+      
+          <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+          </label>
+      
+          <p>By registering you find <a href="#" style="color:dodgerblue">Stock Market Course</a>.</p>
+      
+          <div class="clearfix">
+           
+           <button type="submit" class="signupbtn">Register</button>
+          </div>
+        </div>
+      </form>
+      <script>
+         var form = document.getElementById('sheetdb-form');
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          fetch(form.action, {
+              method : "POST",
+              body: new FormData(document.getElementById("sheetdb-form")),
+          }).then(
+              response => response.json()
+          ).then((html) => {
+            // you can put any JS code here
+            window.open('index.html', '_blank');
+
+          });
+        });
+      </script>
+</body>
+</html>
