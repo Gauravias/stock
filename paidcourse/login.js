@@ -11,7 +11,7 @@ form.addEventListener("submit",(e)=>{
     if(authenticated){
         window.location.href = "index.html"
     }else{
-        alert("wrong")
+        alert("Something went wrong")
     }
 })
 
